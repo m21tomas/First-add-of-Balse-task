@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Table} from 'react-bootstrap';
-import ActualItems from './ActualItems';
 
 class TableImage extends Component{
 
@@ -25,8 +24,8 @@ class TableImage extends Component{
                     </thead>
                     <tbody>
                     {
-                        ActualItems.map(item => (
-                            <tr>
+                        this.props.dataList.map(item => (
+                            <tr key={item.id}>
                                 <th>{item.id}</th>
                                 <th>{item.title}</th>
                                 <th>{item.price}</th>

@@ -1,11 +1,21 @@
-// import React from 'react';
-import {Table} from 'react-bootstrap';
-import ActualItems from './ActualItems';
+import React from 'react';
+import { Table } from 'react-bootstrap';
 
-function FilteredItems() {
+const getItems = (props) => {
+    return props.dataList.filter(it => it.price < 200).map(it => {
+        return (
+            <tr key={it.id}>
+                <th>{it.title}</th>
+                <th>{it.price}</th>
+            </tr>
+        )
+    });
+}
 
-    return(
-	<div className="container">
+function FilteredItems(props) {
+    //  return props.dataList.filter(item => item.price < 200).map(item => {
+    return (
+        <div className="container">
             <div className="row">
                 <div className="col-12">
                     <p style={{ "paddingTop": "20px", "textAlign": "left", "fontWeight": "bold", "fontSize": "20px" }}>
@@ -13,7 +23,7 @@ function FilteredItems() {
                 </div>
             </div>
 
-            <Table style={{"width": "auto"}} className="table table-bordered">
+            <Table style={{ "width": "auto" }} className="table table-bordered">
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -21,17 +31,11 @@ function FilteredItems() {
                     </tr>
                 </thead>
                 <tbody>
-                    {ActualItems.filter(item => item.price < 200).map(item => (
-                        <tr>
-                            <th>{item.title}</th>
-                            <th>{item.price}</th>
-                        </tr>
-                    )
-                    )}
+                    {getItems(props)}
                 </tbody>
             </Table>
-    </div>
-    );
+        </div>
+    )
 }
 
 export default FilteredItems;
